@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      body{
+	  background:#ccc;
+      }
+      #my-img{
+	  image-rendering:pixelated;
+      }
+      #my-canv{
+	  border:1px solid blue;
+      }
+    </style>
+  </head>
+  <body>
+    <img id="my-img" width="250px" src="mar1.png"/>
+    <canvas id="my-canv" width="500px" height="300px"></canvas>
+
+    <script>
+      window.onload = function() {
+	  var cnv = document.getElementById("my-canv");
+	  var ctx = cnv.getContext("2d");
+	  var img = document.getElementById("my-img");
+	  ctx.drawImage(img, 10, 10);
+      };
+    </script>
+  </body>
+</html>
