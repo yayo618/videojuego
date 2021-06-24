@@ -14,14 +14,15 @@
     </style>
   </head>
   <body>
-    <img id="my-img" src="mar1.png"/>
-    <canvas id="my-canv" width="500px" height="300px"></canvas>
+    <img id="my-img" src="marioAll.png"/>
+    <canvas id="my-canv" width="256px" height="240px"></canvas>
 
     <script>
       window.onload = function() {
 	  var cnv = document.getElementById("my-canv");
 	  var ctx = cnv.getContext("2d");
 	  var img = document.getElementById("my-img");
+	  ctx.imageSmoothingEnabled = false;		  
 	  ctx.drawImage(img, 10, 10, img.width*2, img.height*2);
       };
     </script>
