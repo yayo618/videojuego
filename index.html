@@ -22,8 +22,8 @@
       var h = 16;
       var ww = w*2;
       var hh = h*2;
-      let f = 0;
-      //let c = 0;
+      let f = 1;
+      let c = 0;
 
       var cnv = document.getElementById("my-canv");
       var ctx = cnv.getContext("2d");
@@ -32,10 +32,14 @@
       function draw(){
 	  ctx.imageSmoothingEnabled = false;		  
 	  ctx.drawImage(img, w*f, 0, w, h, 20, 20, ww, hh);
-	  f++;
-	  if (f > 4) {
-	    //f++;
-	    f = 0;
+
+	  c++;
+	  if (c > 4) {
+	    f++;
+	    c = 0;
+	  }
+	  if (f > 3) {
+	    f = 1;
 	  }
       }
       function animation() {
