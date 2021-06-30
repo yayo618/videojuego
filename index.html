@@ -20,16 +20,18 @@
     <script>
       var w = 16;
       var h = 16;
+      var ww = w*2;
+      var hh = h*2;
 
       window.onload = function() {
 	  var cnv = document.getElementById("my-canv");
 	  var ctx = cnv.getContext("2d");
 	  var img = document.getElementById("my-img");
 	  ctx.imageSmoothingEnabled = false;		  
-	  ctx.drawImage(img, 0, 0, w, h, 0, 20, w*2, h*2);
-	  ctx.drawImage(img, w, 0, w, h, w*2, 20, w*2, h*2);
-	  ctx.drawImage(img, w*2, 0, w, h, w*2*2, 20, w*2, h*2);
-	  ctx.drawImage(img, w*3, 0, w, h, w*2*3, 20, w*2, h*2);
+	  ctx.drawImage(img, w*0, 0, w, h, ww*0, 20, ww, hh);
+	  ctx.drawImage(img, w*1, 0, w, h, ww*1, 20, ww, hh);
+	  ctx.drawImage(img, w*2, 0, w, h, ww*2, 20, ww, hh);
+	  ctx.drawImage(img, w*3, 0, w, h, ww*3, 20, ww, hh);
       };
     </script>
   </body>
