@@ -31,7 +31,9 @@
 
       function draw(){
 	  ctx.imageSmoothingEnabled = false;		  
-	  ctx.drawImage(img, w*f, 0, w, h, 20, 20, ww, hh);
+	  ctx.scale(-1,1);
+	  ctx.drawImage(img, w*f, 0, w, h, -52, 20, ww, hh);
+	  ctx.scale(-1,1);
 
 	  c++;
 	  if (c > 4) {
