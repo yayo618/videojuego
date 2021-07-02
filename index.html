@@ -5,6 +5,7 @@
     <style>
       body{
 	  background:#ccc;
+	  touch-action:none;
       }
       #my-img{
 	  image-rendering:pixelated;
@@ -15,13 +16,22 @@
 	  height:auto;
 	  image-rendering:pixelated;
       }
+      .but{
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	-khtml-user-select:none;
+      }
     </style>
   </head>
   <body>
+    <button class="but" id="iz">izquierda</button>
+    <button class="but" id="de">derecha</button>
 	  <!--<img id="my-img" src="marioAll.png"/>-->
     <canvas id="my-canv" width="256px" height="240px"></canvas>
 
     <script>
+      var movIz, movDe;
       var w = 16;
       var h = 16;
       let f = 1;
@@ -47,7 +57,8 @@
 	  if (f > 3) {
 	    f = 1;
 	  }
-	  x++;
+	  if (movDe){x++;}
+	  if (movIz){x--;}
       }
       function animation() {
 	  ctx.clearRect(0, 0, cnv.width, cnv.height);
@@ -55,6 +66,13 @@
 	  requestAnimationFrame(animation);
       }
       animation();
+      //eventos botones
+      var btnIz = document.getElementById("iz");
+      var btnDe = document.getElementById("de");
+      btnIz.addEventListener("touchstart", function (e) {movIz=true;}, false);
+      btnIz.addEventListener("touchend", function (e) {movIz=false;}, false);
+      btnDe.addEventListener("touchstart", function (e) {movDe=true;}, false);
+      btnDe.addEventListener("touchend", function (e) {movDe=false;}, false);
     </script>
   </body>
 </html>
