@@ -1,6 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <title>bross man</title>
     <style>
       body{
 	  background:#ccc;
@@ -17,26 +18,26 @@
     </style>
   </head>
   <body>
-    <img id="my-img" src="marioAll.png"/>
+	  <!--<img id="my-img" src="marioAll.png"/>-->
     <canvas id="my-canv" width="256px" height="240px"></canvas>
 
     <script>
       var w = 16;
       var h = 16;
-      //var ww = w*2;
-      //var hh = h*2;
       let f = 1;
       let c = 0;
+      var x = 20;
 
       var cnv = document.getElementById("my-canv");
       var ctx = cnv.getContext("2d");
-      var img = document.getElementById("my-img");
+      var img = new Image();
+      img.src = "marioAll.png";
 
       function draw(){
 	  ctx.imageSmoothingEnabled = false;		  
-	  ctx.scale(-1,1);
-	  ctx.drawImage(img, w*f, 0, w, h, -52, 20, w, h);
-	  ctx.scale(-1,1);
+	  //ctx.scale(-1,1);
+	  ctx.drawImage(img, w*f, 0, w, h, x, 20, w, h);
+	  //ctx.scale(-1,1);
 
 	  c++;
 	  if (c > 4) {
@@ -46,6 +47,7 @@
 	  if (f > 3) {
 	    f = 1;
 	  }
+	  x++;
       }
       function animation() {
 	  ctx.clearRect(0, 0, cnv.width, cnv.height);
