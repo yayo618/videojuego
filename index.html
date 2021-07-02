@@ -27,11 +27,12 @@
   <body>
     <button class="but" id="iz">izquierda</button>
     <button class="but" id="de">derecha</button>
-	  <!--<img id="my-img" src="marioAll.png"/>-->
     <canvas id="my-canv" width="256px" height="240px"></canvas>
 
     <script>
       var movIz, movDe;
+      var izz = false;
+      var dee = true;
       var det= true;
       var w = 16;
       var h = 16;
@@ -48,27 +49,35 @@
       function draw(){
 	  ctx.imageSmoothingEnabled = false;		  
 	  if (det) {
-	    ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+	    if (dee) {
+	      ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+	    }
+	    if (izz) {
+	      ctx.scale(-1,1);
+	      ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
+	      ctx.scale(-1,1);
+	    }
 	  }
 	  if (movDe){
-	    ctx.drawImage(img, w*f, 0, w, h, x, 20, w, h);
+	    ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
 	    x++;
-	    
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
+	    izz = false;
+	    dee = true;
 	  }
 	  if (movIz){
-	  ctx.scale(-1,1);
-	  ctx.drawImage(img, w*f, 0, w, h, -x-16, 20, w, h);
-	  ctx.scale(-1,1);
+	    ctx.scale(-1,1);
+	    ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
+	    ctx.scale(-1,1);
 	    x--;
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
-	  }
-
-	  
+	    izz = true;
+	    dee = false;
+	  } 
       }
       function animation() {
 	  ctx.clearRect(0, 0, cnv.width, cnv.height);
@@ -79,9 +88,9 @@
       //eventos botones
       var btnIz = document.getElementById("iz");
       var btnDe = document.getElementById("de");
-      btnIz.addEventListener("touchstart", function (e) {movIz=true;det=false;}, false);
+      btnIz.addEventListener("touchstart", function(e) {movIz=true;det=false;},false);
       btnIz.addEventListener("touchend", function (e) {movIz=false;det=true;}, false);
-      btnDe.addEventListener("touchstart", function (e) {movDe=true;det=false;}, false);
+      btnDe.addEventListener("touchstart", function(e) {movDe=true;det=false;}, false);
       btnDe.addEventListener("touchend", function (e) {movDe=false;det=true;}, false);
     </script>
   </body>
