@@ -17,3 +17,18 @@ body{
     -ms-user-select:none;
     -khtml-user-select:none;
 }
+#canv-pad{
+    border:1px solid darkorange;
+    height:304px;
+    width:100%;
+}
+#mov-cnv{
+    border:1px solid orange;
+    float:left;
+}
+#jump{
+    height:300;
+    width:300;
+    border:1px solid orange;
+    float:right;
+}

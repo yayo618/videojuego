@@ -50,8 +50,8 @@ function draw(){
 }
 function animation() {
     ctx.fillStyle = "skyblue";
-    ctx.fillRect(0, 0, cnv.width, cnv.height);
-//  ctx.clearRect(0, 0, cnv.width, cnv.height);
+//    ctx.fillRect(0, 0, cnv.width, cnv.height);
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
     draw();
     requestAnimationFrame(animation);
 }
