@@ -1,0 +1,19 @@
+body{
+    background:#ccc;
+    touch-action:none;
+}
+#my-img{
+    image-rendering:pixelated;
+}
+#my-canv{
+    border:1px solid black;
+    width:100%;
+    height:auto;
+    image-rendering:pixelated;
+}
+.but{
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -khtml-user-select:none;
+}
