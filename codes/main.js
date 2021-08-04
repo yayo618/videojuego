@@ -16,7 +16,12 @@ var img = new Image();
 img.src = "marioAll.png";
 
 function draw(){
-    ctx.imageSmoothingEnabled = false;		  
+    ctx.imageSmoothingEnabled = false;
+    //braw border
+    for (let i = 0; i < borders.length; i++) {
+	borders[i].draw();
+    }
+    
     if (det) {
 	if (dee) {
 	    ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
@@ -56,6 +61,8 @@ function animation() {
     requestAnimationFrame(animation);
 }
 animation();
+
+
 //eventos botones
 var btnIz = document.getElementById("iz");
 var btnDe = document.getElementById("de");
