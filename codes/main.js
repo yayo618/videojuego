@@ -51,7 +51,47 @@ function draw(){
 	if (f > 3) { f = 1; }
 	izz = true;
 	dee = false;
-    } 
+    }
+
+    /*
+    //HORIZONTAL COLLISION RECT
+    let horizontalRect = {
+	x: x + this.xspeed,
+	y: this.y,
+	width: this.width,
+	height: this.height
+    }
+    //VERTICAL COLLISION RECT	    
+    let verticalRect = {
+	x: this.x,
+	y: this.y + this.yspeed,
+	width: this.width,
+	height: this.height
+    }
+    //CHECK INTERSECTION
+    for (let i = 0; i< borders.length; i++) {
+	let borderRect = {
+	    x: borders[i].x,
+	    y: borders[i].y,
+	    width: borders[i].width,
+	    height: borders[i].height
+	}
+	if (checkIn(horizontalRect, borderRect)) {
+	    while (checkIn(horizontalRect, borderRect)) {
+		horizontalRect.x -= Math.sign(this.xspeed);
+	    }
+	    this.x = horizontalRect.x;
+	    this.xspeed = 0;
+	}
+	if (checkIn(verticalRect, borderRect)) {
+	    while (checkIn(verticalRect, borderRect)) {
+		verticalRect.y -= Math.sign(this.yspeed);
+	    }
+	    this.y = verticalRect.y;
+	    this.yspeed = 0;
+	}
+    }
+*/
 }
 function animation() {
     ctx.fillStyle = "skyblue";
