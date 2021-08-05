@@ -17,7 +17,7 @@ var img = new Image();
 var friction = 0.2;
 var xspeed = 0;
 var yspeed = 0;
-var maxspeed = 2;
+var maxspeed = 1;
 
 img.src = "marioAll.png";
 
@@ -44,7 +44,7 @@ function draw(){
     if (movDe){
 	ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
 	//x++;
-	xspeed ++;
+	xspeed += 0.2;
 	c++;
 	if (c > 4) { f++; c = 0; }
 	if (f > 3) { f = 1; }
@@ -56,7 +56,7 @@ function draw(){
 	ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
 	ctx.scale(-1,1);
 	//x--;
-	xspeed --;
+	xspeed -= 0.2;
 	c++;
 	if (c > 4) { f++; c = 0; }
 	if (f > 3) { f = 1; }
@@ -112,8 +112,8 @@ function draw(){
 	if (checkIn(horizontalRect, borderRect)) {
 	    while (checkIn(horizontalRect, borderRect)) {
 		//horizontalRect.x -= Math.sign(xspeed);
-		if (xspeed<0) {horizontalRect.x-=-1;}
-		else {horizontalRect.x-=1;}
+		if (xspeed<0) {horizontalRect.x-=-0.1;}
+		else {horizontalRect.x-=0.1;}
 	    }
 	    x = horizontalRect.x;
 	    xspeed = 0;
@@ -121,8 +121,8 @@ function draw(){
 	if (checkIn(verticalRect, borderRect)) {
 	    while (checkIn(verticalRect, borderRect)) {
 		//verticalRect.y -= Math.sign(yspeed);
-		if (yspeed<0) {verticalRect.y+=1;}
-		else {verticalRect.y+=-1;}
+		if (yspeed<0) {verticalRect.y+=0.1;}
+		else {verticalRect.y+=-0.1;}
 	    }
 	    y = verticalRect.y;
 	    yspeed = 0;
