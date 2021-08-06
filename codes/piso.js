@@ -1,8 +1,13 @@
 var borders = [];
-for (let i = 0; i < 6; i++) {
-    borders.push(new Border(0+32*i, 208, 32, 32));
-}
+var img_piso = new Image();
+img_piso.src = "tile-piso.png";
 
+for (let i = 0; i < 5; i++) {
+    borders.push(new Border(0+16*i, 208, 16, 16));
+}
+for (let i = 0; i < 3; i++) {
+    borders.push(new Border(160, 208-16*i, 16, 16));
+}
 
 function Border (x, y, width, height) {
     this.x = x;
@@ -11,8 +16,9 @@ function Border (x, y, width, height) {
     this.height = height;
 
     this.draw = function () {
-	ctx.fillStyle = "blue";
-	ctx.fillRect(this.x, this.y, this.width, this.height);
+	//ctx.fillStyle = "blue";
+	//ctx.fillRect(this.x, this.y, this.width, this.height);
+	ctx.drawImage(img_piso, this.x, this.y, this.width, this.height);	
     }
 }
 
