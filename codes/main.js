@@ -18,6 +18,7 @@ var friction = 0.2;
 var xspeed = 0;
 var yspeed = 0;
 var maxspeed = 1;
+var maxspeedy = 2;
 
 img.src = "img/marioAll.png";
 
@@ -31,18 +32,21 @@ function draw(){
     if (det) {
 	xspeed *= friction;
 	yspeed *= friction;
-	
-	if (dee) {
-	    ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
-	}
-	if (izz) {
-	    ctx.scale(-1,1);
-	    ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
-	    ctx.scale(-1,1);
+	if (!jump) {
+	    if (dee) {
+		ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+	    }
+	    if (izz) {
+		ctx.scale(-1,1);
+		ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
+		ctx.scale(-1,1);
+	    }
 	}
     }
     if (movDe){
-	ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
+	if (!jump) {
+	    ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
+	}
 	//x++;
 	xspeed += 0.2;
 	c++;
@@ -52,9 +56,11 @@ function draw(){
 	dee = true;
     }
     if (movIz){
-	ctx.scale(-1,1);
-	ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
-	ctx.scale(-1,1);
+	if (!jump) {
+	    ctx.scale(-1,1);
+	    ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
+	    ctx.scale(-1,1);
+	}
 	//x--;
 	xspeed -= 0.2;
 	c++;
@@ -64,16 +70,24 @@ function draw(){
 	dee = false;
     }
   
-	yspeed++;//habia q ponerlo arriba
+    yspeed+=2;//habia q ponerlo arriba
     
     if (jump) {
-	yspeed=-1.5;
+	yspeed=-2.5;
+	if (dee) {
+	    ctx.drawImage(img, w*5, 0, w, h, x, y, w, h);
+	}
+	if (izz) {
+	    ctx.scale(-1,1);
+	    ctx.drawImage(img, w*5, 0, w, h, -x-16, y, w, h);
+	    ctx.scale(-1,1);
+	}
     }
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
-    if (yspeed>maxspeed) {yspeed=maxspeed;}
-    else if (yspeed<-maxspeed) {yspeed=-maxspeed}    
+    if (yspeed>maxspeedy) {yspeed=maxspeedy;}
+    else if (yspeed<-maxspeedy) {yspeed=-maxspeedy}    
 /*
     	  if (xspeed > 0) {xspeed = Math.floor(xspeed);}
 	  else {xspeed = Math.ceil(xspeed);}
