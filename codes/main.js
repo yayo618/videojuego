@@ -19,7 +19,7 @@ var xspeed = 0;
 var yspeed = 0;
 var maxspeed = 1;
 
-img.src = "marioAll.png";
+img.src = "img/marioAll.png";
 
 function draw(){
     ctx.imageSmoothingEnabled = false;
