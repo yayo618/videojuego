@@ -20,6 +20,9 @@ var yspeed = 0;
 var maxspeed = 1;
 var maxspeedy = 2;
 
+var checker = false;
+var saltando = false;
+
 img.src = "img/marioAll.png";
 
 function draw(){
@@ -32,7 +35,7 @@ function draw(){
     if (det) {
 	xspeed *= friction;
 	yspeed *= friction;
-	if (!jump) {
+	if (!saltando) {
 	    if (dee) {
 		ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
 	    }
@@ -44,7 +47,7 @@ function draw(){
 	}
     }
     if (movDe){
-	if (!jump) {
+	if (!saltando) {
 	    ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
 	}
 	//x++;
@@ -56,7 +59,7 @@ function draw(){
 	dee = true;
     }
     if (movIz){
-	if (!jump) {
+	if (!saltando) {
 	    ctx.scale(-1,1);
 	    ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
 	    ctx.scale(-1,1);
@@ -71,9 +74,13 @@ function draw(){
     }
   
     yspeed+=2;//habia q ponerlo arriba
-    
+
     if (jump) {
+	saltando = true;
 	yspeed=-2.5;
+    }
+	
+    if (saltando) {
 	if (dee) {
 	    ctx.drawImage(img, w*5, 0, w, h, x, y, w, h);
 	}
@@ -83,6 +90,9 @@ function draw(){
 	    ctx.scale(-1,1);
 	}
     }
+
+    if (checker) {saltando = false;}
+    
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -137,12 +147,18 @@ function draw(){
 		//verticalRect.y -= Math.sign(yspeed);
 		if (yspeed<0) {verticalRect.y+=0.1;}
 		else {verticalRect.y+=-0.1;}
+		    //checker = true;
 	    }
 	    y = verticalRect.y;
 	    yspeed = 0;
+		    //checker=true;
 	}
+checkPiso (verticalRect, borderRect);
     }
-    
+    //show coll
+    ctx.font = "11px Arial";
+    ctx.fillStyle = "black";
+    ctx.fillText("colision: "+checker, 20, 20);
 
     x += xspeed;
     y += yspeed;
