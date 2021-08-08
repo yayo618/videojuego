@@ -20,7 +20,7 @@ var yspeed = 0;
 var maxspeed = 1;
 var maxspeedy = 2;
 
-var checker = false;
+//var checker = false;
 var saltando = false;
 
 img.src = "img/marioAll.png";
@@ -35,40 +35,51 @@ function draw(){
     if (det) {
 	xspeed *= friction;
 	yspeed *= friction;
-	if (!saltando) {
-	    if (dee) {
+	if (dee) {
+	    if (saltando) {
+	        ctx.drawImage(img, w*5, 0, w, h, x, y, w, h);
+	    } else {
 		ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
 	    }
-	    if (izz) {
-		ctx.scale(-1,1);
-		ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
-		ctx.scale(-1,1);
-	    }
+	    //ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
 	}
+	if (izz) {
+	    ctx.scale(-1,1);
+	    if (saltando) {
+                ctx.drawImage(img, w*5, 0, w, h, -x-16, y, w, h);
+	    } else {
+		ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
+	    }
+	    //ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
+	    ctx.scale(-1,1);
+	}
+
     }
     if (movDe){
-	if (!saltando) {
-	    ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
+	if (saltando) {
+	    f = 5;
+	} else {
+	    c++;
+	    if (c > 4) { f++; c = 0; }
+	    if (f > 3) { f = 1; }
 	}
-	//x++;
+	ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
 	xspeed += 0.2;
-	c++;
-	if (c > 4) { f++; c = 0; }
-	if (f > 3) { f = 1; }
 	izz = false;
 	dee = true;
     }
     if (movIz){
-	if (!saltando) {
-	    ctx.scale(-1,1);
-	    ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
-	    ctx.scale(-1,1);
-	}
-	//x--;
+	if (saltando) {
+	    f = 5;
+	} else {
+	    c++;
+	    if (c > 4) { f++; c = 0; }
+	    if (f > 3) { f = 1; }
+	} 
+	ctx.scale(-1,1);
+	ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
+	ctx.scale(-1,1);
 	xspeed -= 0.2;
-	c++;
-	if (c > 4) { f++; c = 0; }
-	if (f > 3) { f = 1; }
 	izz = true;
 	dee = false;
     }
@@ -79,20 +90,6 @@ function draw(){
 	saltando = true;
 	yspeed=-2.5;
     }
-	
-    if (saltando) {
-	if (dee) {
-	    ctx.drawImage(img, w*5, 0, w, h, x, y, w, h);
-	}
-	if (izz) {
-	    ctx.scale(-1,1);
-	    ctx.drawImage(img, w*5, 0, w, h, -x-16, y, w, h);
-	    ctx.scale(-1,1);
-	}
-    }
-
-    if (checker) {saltando = false;}
-    
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -147,18 +144,17 @@ function draw(){
 		//verticalRect.y -= Math.sign(yspeed);
 		if (yspeed<0) {verticalRect.y+=0.1;}
 		else {verticalRect.y+=-0.1;}
-		    //checker = true;
 	    }
 	    y = verticalRect.y;
 	    yspeed = 0;
-		    //checker=true;
+	    
+	    saltando= false;
 	}
-checkPiso (verticalRect, borderRect);
     }
     //show coll
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("colision: "+checker, 20, 20);
+    ctx.fillText("colision: "+saltando, 20, 20);
 
     x += xspeed;
     y += yspeed;

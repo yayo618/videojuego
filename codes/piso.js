@@ -47,8 +47,4 @@ function checkIn (r1, r2) {
     else {return true;}
 }
 
-function checkPiso (r1, r2) {
-    if (r1.y > r2.y + r2.height) {checker= true;}
-    else {checker= false;}
-	//checker = false;
-}
+
