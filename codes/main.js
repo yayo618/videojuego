@@ -23,11 +23,13 @@ var maxspeedy = 2;
 //var checker = false;
 var saltando = false;
 
-var scrolling = 125;
+var scrolling = 25;
 img.src = "img/marioAll.png";
 
 function draw(){
-    if (x>scrolling) {worldX-=1;} else if (x<75) {worldX+=1} else {worldX+=0;}
+    if (x>scrolling+125) {worldX-=xspeed;scrolling+=xspeed;}
+    else if (x<scrolling) {worldX-=xspeed;scrolling+=xspeed;}
+    else {worldX+=0;}
     ctx.imageSmoothingEnabled = false;
     //braw border
     for (let i = 0; i < borders.length; i++) {
@@ -155,15 +157,15 @@ function draw(){
     //show coll
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("xspeed: "+xspeed, 20, 20);
+    ctx.fillText("scrolling: "+scrolling, 20, 20);
 
     x += xspeed;
     y += yspeed;
 }
 function animation() {
     ctx.fillStyle = "rgb(147,187,236)";
+    ctx.clearRect(0, 0, cnv.width, cnv.height);    
     ctx.fillRect(0, 0, cnv.width, cnv.height);
-    //ctx.clearRect(0, 0, cnv.width, cnv.height);
     draw();
     requestAnimationFrame(animation);
 }
