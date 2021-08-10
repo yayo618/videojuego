@@ -1,4 +1,4 @@
-var worldX = 1;
+var worldX = 0;
 
 var borders = [];
 var img_piso = new Image();

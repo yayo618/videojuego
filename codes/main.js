@@ -7,7 +7,7 @@ var w = 16;
 var h = 16;
 let f = 1;
 let c = 0;
-var x = 20;
+var x = 100;
 var y = 20;
 
 var cnv = document.getElementById("my-canv");
@@ -23,10 +23,11 @@ var maxspeedy = 2;
 //var checker = false;
 var saltando = false;
 
+var scrolling = 125;
 img.src = "img/marioAll.png";
 
 function draw(){
-    worldX++;
+    if (x>scrolling) {worldX-=1;} else if (x<75) {worldX+=1} else {worldX+=0;}
     ctx.imageSmoothingEnabled = false;
     //braw border
     for (let i = 0; i < borders.length; i++) {
@@ -38,18 +39,18 @@ function draw(){
 	yspeed *= friction;
 	if (dee) {
 	    if (saltando) {
-	        ctx.drawImage(img, w*5, 0, w, h, x, y, w, h);
+	        ctx.drawImage(img, w*5, 0, w, h, x+worldX, y, w, h);
 	    } else {
-		ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
+		ctx.drawImage(img, 0, 0, w, h, x+worldX, y, w, h);
 	    }
 	    //ctx.drawImage(img, 0, 0, w, h, x, y, w, h);
 	}
 	if (izz) {
 	    ctx.scale(-1,1);
 	    if (saltando) {
-                ctx.drawImage(img, w*5, 0, w, h, -x-16, y, w, h);
+                ctx.drawImage(img, w*5, 0, w, h, -x-16-worldX, y, w, h);
 	    } else {
-		ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
+		ctx.drawImage(img, 0, 0, w, h, -x-16-worldX, y, w, h);
 	    }
 	    //ctx.drawImage(img, 0, 0, w, h, -x-16, y, w, h);
 	    ctx.scale(-1,1);
@@ -64,7 +65,7 @@ function draw(){
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
 	}
-	ctx.drawImage(img, w*f, 0, w, h, x, y, w, h);
+	ctx.drawImage(img, w*f, 0, w, h, x+worldX, y, w, h);
 	xspeed += 0.2;
 	izz = false;
 	dee = true;
@@ -78,7 +79,7 @@ function draw(){
 	    if (f > 3) { f = 1; }
 	} 
 	ctx.scale(-1,1);
-	ctx.drawImage(img, w*f, 0, w, h, -x-16, y, w, h);
+	ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX, y, w, h);
 	ctx.scale(-1,1);
 	xspeed -= 0.2;
 	izz = true;
@@ -121,7 +122,6 @@ function draw(){
 	width: w,
 	height: h
     }
-    
     //CHECK INTERSECTION
     for (let i = 0; i< borders.length; i++) {
 	let borderRect = {
@@ -155,7 +155,7 @@ function draw(){
     //show coll
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("colision: "+saltando, 20, 20);
+    ctx.fillText("xspeed: "+xspeed, 20, 20);
 
     x += xspeed;
     y += yspeed;
