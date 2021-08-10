@@ -1,3 +1,5 @@
+var worldX = 1;
+
 var borders = [];
 var img_piso = new Image();
 img_piso.src = "img/tile-piso.png";
@@ -27,13 +29,13 @@ function Border (x, y, width, height, type) {
 
     this.draw = function () {
 	if (this.type === 1) {
-	    ctx.drawImage(img_piso, this.x, this.y, this.width, this.height);	
+	    ctx.drawImage(img_piso, this.x+worldX, this.y, this.width, this.height);	
 	}
 	else if (this.type === 2) {
-	    ctx.drawImage(img_pipe0, this.x, this.y, this.width, this.height);	
+	    ctx.drawImage(img_pipe0, this.x+worldX, this.y, this.width, this.height);	
 	}
 	else if (this.type === 3) {
-	    ctx.drawImage(img_pipe1, this.x, this.y, this.width, this.height);	
+	    ctx.drawImage(img_pipe1, this.x+worldX, this.y, this.width, this.height);	
 	}
     }
 }

@@ -26,6 +26,7 @@ var saltando = false;
 img.src = "img/marioAll.png";
 
 function draw(){
+    worldX++;
     ctx.imageSmoothingEnabled = false;
     //braw border
     for (let i = 0; i < borders.length; i++) {
