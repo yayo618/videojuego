@@ -1,31 +1,5 @@
-var movIz, movDe;
-var izz = false;
-var dee = true;
-var det= true;
-var jump = false;
-var w = 16;
-var h = 16;
-let f = 1;
-let c = 0;
-var x = 100;
-var y = 20;
-
 var cnv = document.getElementById("my-canv");
 var ctx = cnv.getContext("2d");
-var img = new Image();
-
-var friction = 0.2;
-var xspeed = 0;
-var yspeed = 0;
-var maxspeed = 1;
-var maxspeedy = 2;
-
-//var checker = false;
-var saltando = false;
-
-var scrolling = 25;
-img.src = "img/marioAll.png";
-
 
 function animation() {
     ctx.fillStyle = "rgb(147,187,236)";
