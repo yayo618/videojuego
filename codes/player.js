@@ -29,30 +29,19 @@ function draw(){
     else {worldX+=0;}
     ctx.imageSmoothingEnabled = false;
     
-    //braw border
+    //draw border
     for (let i = 0; i < borders.length; i++) {
 	borders[i].draw();
     }
-    
+    //moves
     if (det) {
 	xspeed *= friction;
 	yspeed *= friction;
-	
 	if (saltando) {
-	    f = w*5;
+	    f = 5;
 	} else {
 	    f = 0;
 	}
-	
-	if (dee) {
-	    ctx.drawImage(img, f, 0, w, h, x+worldX, y, w, h);
-	}
-	if (izz) {
-	    ctx.scale(-1,1);
-	    ctx.drawImage(img, f, 0, w, h, -x-16-worldX, y, w, h);
-	    ctx.scale(-1,1);
-	}
-
     }
     if (movDe){
 	if (saltando) {
@@ -62,7 +51,6 @@ function draw(){
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
 	}
-	ctx.drawImage(img, w*f, 0, w, h, x+worldX, y, w, h);
 	xspeed += 0.2;
 	izz = false;
 	dee = true;
@@ -75,14 +63,19 @@ function draw(){
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
 	} 
-	ctx.scale(-1,1);
-	ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX, y, w, h);
-	ctx.scale(-1,1);
 	xspeed -= 0.2;
 	izz = true;
 	dee = false;
+    }	
+    if (dee) {
+        ctx.drawImage(img, w*f, 0, w, h, x+worldX, y, w, h);
     }
-  
+    if (izz) {
+        ctx.scale(-1,1);
+        ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX, y, w, h);
+	ctx.scale(-1,1);
+    }
+ 
     yspeed+=2;//habia q ponerlo arriba
 
     if (jump) {
