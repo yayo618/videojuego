@@ -9,6 +9,7 @@ let f = 1;
 let c = 0;
 var x = 100;
 var y = 20;
+let cc = 0;
 
 var friction = 0.2;
 var xspeed = 0;
@@ -81,6 +82,9 @@ function draw(){
     if (jump) {
 	saltando = true;
 	yspeed=-2.5;
+	cc++;
+	if (cc>45) {yspeed=+2.5;}
+	//c=0;
     }
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
@@ -130,6 +134,8 @@ function draw(){
 	    yspeed = 0;
 	    
 	    saltando= false;
+	    cc=0;
+	    jump=false;
 	}
     }
     //show coll
