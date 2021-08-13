@@ -8,17 +8,17 @@ img_pipe0.src = "img/pipe1.png";
 var img_pipe1 = new Image();
 img_pipe1.src = "img/pipe2.png";
 
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 18; i++) {
     borders.push(new Border(0+16*i, 208, 16, 16, 1));
 }
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < 18; i++) {
     borders.push(new Border(0+16*i, 224, 16, 16, 1));
 }
 borders.push(new Border(160, 144, 32, 16, 2));
 for (let i = 0; i < 3; i++) {
     borders.push(new Border(160, 192-16*i, 32, 16, 3));
 }
-
+borders.push(new Border(224, 144, 16, 16, 1));
 //FUNCTION
 function Border (x, y, width, height, type) {
     this.x = x;

@@ -9,6 +9,9 @@ let f = 1;
 let c = 0;
 var x = 100;
 var y = 20;
+//counts jumps
+var cj = 0;
+var cjj = 0;
 let cc = 0;
 
 var friction = 0.2;
@@ -80,12 +83,17 @@ function draw(){
     yspeed+=2;//habia q ponerlo arriba
 
     if (jump) {
+	cj++;
+	if (cj===1) {cjj++;}
+	if (cjj===1) {
+	  yspeed=-2;
+	}
 	saltando = true;
-	yspeed=-2.5;
 	cc++;
-	if (cc>45) {yspeed=+2.5;}
+	if (cc>45) {yspeed=+2;}
 	//c=0;
     }
+	if (!jump) {cjj=0;}
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -132,17 +140,19 @@ function draw(){
 	    }
 	    y = verticalRect.y;
 	    yspeed = 0;
-	    
-	    saltando= false;
-	    cc=0;
-	    jump=false;
+	    //limit jump
+	    saltando = false;
+	    cc = 0;
+	    jump = false;
+	    cj = 0;
+	    //cjj = 0;
 	}
     }
     //show coll
-/*  ctx.font = "11px Arial";
+    ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("scrolling: "+scrolling, 20, 20);
-*/
+    ctx.fillText("cjj: "+cjj, 20, 20);
+
     x += xspeed;
     y += yspeed;
 }
