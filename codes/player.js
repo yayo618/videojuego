@@ -22,6 +22,8 @@ var maxspeedy = 2;
 var img = new Image();
 
 var saltando = false;
+var check = 0;
+var col1 =0;
 
 var scrolling = 25;
 img.src = "img/marioAll.png";
@@ -85,15 +87,12 @@ function draw(){
     if (jump) {
 	cj++;
 	if (cj===1) {cjj++;}
-	if (cjj===1) {
-	  yspeed=-2;
-	}
+	if (cjj===1) {yspeed=-2;}
 	saltando = true;
 	cc++;
 	if (cc>45) {yspeed=+2;}
-	//c=0;
     }
-	if (!jump) {cjj=0;}
+    if (!jump) {cjj=0;}
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -122,7 +121,7 @@ function draw(){
 	    width: borders[i].width,
 	    height: borders[i].height
 	}
-	
+	//check = checkIn(horizontalRect, borderRect);
 	if (checkIn(horizontalRect, borderRect)) {
 	    while (checkIn(horizontalRect, borderRect)) {
 		//horizontalRect.x -= Math.sign(xspeed);
@@ -131,6 +130,7 @@ function draw(){
 	    }
 	    x = horizontalRect.x;
 	    xspeed = 0;
+		//check++;
 	}
 	if (checkIn(verticalRect, borderRect)) {
 	    while (checkIn(verticalRect, borderRect)) {
@@ -145,13 +145,17 @@ function draw(){
 	    cc = 0;
 	    jump = false;
 	    cj = 0;
-	    //cjj = 0;
+		check++;
 	}
     }
+var col2 = check -col1;
+col1 = check;
+   // function colision () {
+    //}
     //show coll
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("cjj: "+cjj, 20, 20);
+    ctx.fillText("check: "+col2, 20, 20);
 
     x += xspeed;
     y += yspeed;
