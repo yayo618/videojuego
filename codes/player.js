@@ -23,7 +23,8 @@ var img = new Image();
 
 var saltando = false;
 var check = 0;
-var col1 =0;
+var col1 = 0;
+var cae, caee;
 
 var scrolling = 25;
 img.src = "img/marioAll.png";
@@ -90,9 +91,14 @@ function draw(){
 	if (cjj===1) {yspeed=-2;}
 	saltando = true;
 	cc++;
-	if (cc>45) {yspeed=+2;}
+	if (cc>45 || caee) {yspeed=+2;}
     }
-    if (!jump) {cjj=0;}
+    if (!jump) {
+	cjj=0;
+	if (cae) {caee = true;}
+    }
+	//caendo
+    if (check > 0) {cae = true;}
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -145,17 +151,19 @@ function draw(){
 	    cc = 0;
 	    jump = false;
 	    cj = 0;
-		check++;
+		check=2;
+	cae = false;
+	caee = false;
 	}
     }
-var col2 = check -col1;
+//var col2 = check -col1;
 col1 = check;
    // function colision () {
     //}
     //show coll
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("check: "+col2, 20, 20);
+    ctx.fillText("caee: "+caee, 20, 20);
 
     x += xspeed;
     y += yspeed;
