@@ -10,8 +10,6 @@ let c = 0;
 var x = 100;
 var y = 20;
 //counts jumps
-var cj = 0;
-var cjj = 0;
 let cc = 0;
 
 var friction = 0.2;
@@ -22,13 +20,10 @@ var maxspeedy = 2;
 var img = new Image();
 
 var saltando = false;
-//var check = 0;
-//var col1 = 0;
 var cae, caee, ff;
-//caee = false;
 ff=0;
 
-var scrolling = 25;
+var scrolling = 50;
 img.src = "img/marioAll.png";
 
 function draw(){
@@ -46,68 +41,57 @@ function draw(){
     if (det) {
 	xspeed *= friction;
 	yspeed *= friction;
-	if (saltando) {
-	    f = 5;
-	} else if (caee) {f = ff;}
-	    else {
-	    f = 0;
-	}
+	if (saltando) {f = 5;} 
+	else if (caee) {f = ff;}
+	else {f = 0;}
     }
     if (movDe){
-	if (saltando) {
-	    f = 5;
-	} else if (caee) {f = ff;}
-	    else {
+	if (saltando) {f = 5;} 
+	else if (caee) {f = ff;}
+	else {
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
-		ff = f;
+	    ff = f;
 	}
 	xspeed += 0.2;
 	izz = false;
 	dee = true;
     }
     if (movIz){
-	if (saltando) {
-	    f = 5;
-	} else if (caee) {f = ff;}
+	if (saltando) {f = 5;} 
+	else if (caee) {f = ff;}
 	else {
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
-		ff = f;
+	    ff = f;
 	} 
 	xspeed -= 0.2;
 	izz = true;
 	dee = false;
     }	
     if (dee) {
-        ctx.drawImage(img, w*f, 0, w, h, x+worldX, y, w, h);
+        ctx.drawImage(img, w*f, 0, w, h, x+worldX-2, y, w, h);
     }
     if (izz) {
         ctx.scale(-1,1);
-        ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX, y, w, h);
+        ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX+2, y, w, h);
 	ctx.scale(-1,1);
     }
  
     yspeed+=2;//habia q ponerlo arriba
 
     if (jump) {
-	cj++;
-	if (cj===1) {cjj++;}
-	if (cjj===1) {yspeed=-2;}
-	    if (!caee) {
-	saltando = true;}
+	yspeed=-2;
+	if (!caee) {saltando = true;}
 	cc++;
-	if (cc>45 || caee) {yspeed=+2;}
+	if (cc>40 || caee) {yspeed=+2;}
     }
     if (!jump) {
-	cjj=0;
 	if (cae) {caee = true;}
     }
-	//caendo
-    //if (check > 0) {cae = true;}
-cae = true;
+    cae = true;
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -118,14 +102,14 @@ cae = true;
     let horizontalRect = {
 	x: x + xspeed,
 	y: y,
-	width: w,
+	width: w-4,
 	height: h
     }
     //VERTICAL COLLISION RECT	    
     let verticalRect = {
 	x: x,
 	y: y + yspeed,
-	width: w,
+	width: w-4,
 	height: h
     }
     //CHECK INTERSECTION
@@ -145,7 +129,6 @@ cae = true;
 	    }
 	    x = horizontalRect.x;
 	    xspeed = 0;
-		//check++;
 	}
 	if (checkIn(verticalRect, borderRect)) {
 	    while (checkIn(verticalRect, borderRect)) {
@@ -159,20 +142,14 @@ cae = true;
 	    saltando = false;
 	    cc = 0;
 	    jump = false;
-	    cj = 0;
-	//	check=2;
-	cae = false;
-	caee = false;
+	    cae = false;
+  	    caee = false;
 	}
     }
-//var col2 = check -col1;
-//col1 = check;
-   // function colision () {
-    //}
-    //show coll
+    //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("cae: "+caee, 20, 20);
+    ctx.fillText("caendoo: "+caee, 20, 20);
 
     x += xspeed;
     y += yspeed;
