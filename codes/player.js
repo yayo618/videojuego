@@ -24,7 +24,7 @@ var img = new Image();
 var saltando = false;
 var check = 0;
 var col1 = 0;
-var cae, caee;
+var cae, caee, ff;
 
 var scrolling = 25;
 img.src = "img/marioAll.png";
@@ -46,17 +46,20 @@ function draw(){
 	yspeed *= friction;
 	if (saltando) {
 	    f = 5;
-	} else {
+	} else if (caee) {f = ff;}
+	    else {
 	    f = 0;
 	}
     }
     if (movDe){
 	if (saltando) {
 	    f = 5;
-	} else {
+	} else if (caee) {f = ff;}
+	    else {
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
+		ff = f;
 	}
 	xspeed += 0.2;
 	izz = false;
@@ -65,10 +68,12 @@ function draw(){
     if (movIz){
 	if (saltando) {
 	    f = 5;
-	} else {
+	} else if (caee) {f = ff;}
+	else {
 	    c++;
 	    if (c > 4) { f++; c = 0; }
 	    if (f > 3) { f = 1; }
+		ff = f;
 	} 
 	xspeed -= 0.2;
 	izz = true;
@@ -89,7 +94,8 @@ function draw(){
 	cj++;
 	if (cj===1) {cjj++;}
 	if (cjj===1) {yspeed=-2;}
-	saltando = true;
+	    if (!caee) {
+	saltando = true;}
 	cc++;
 	if (cc>45 || caee) {yspeed=+2;}
     }
