@@ -41,8 +41,6 @@ function draw(){
     for (let i = 0; i < enemies.length; i++) {
 	enemies[i].draw();
     }
-    //enemies[0].draw();
-//    ctx.drawImage(img_goomba,0,0,16,16, this.x+worldX, this.y-16, this.w, this.h);
     //moves
     if (det) {
 	xspeed *= friction;

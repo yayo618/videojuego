@@ -19,6 +19,7 @@ for (let i = 0; i < 3; i++) {
     borders.push(new Border(160, 192-16*i, 32, 16, 3));
 }
 borders.push(new Border(224, 144, 16, 16, 1));
+borders.push(new Border(288, 192, 16, 16, 1));
 //enemy
 var img_goomba = new Image();
 img_goomba.src = "img/goomba.png";
@@ -48,8 +49,6 @@ function Border (x, y, width, height, type) {
 }
 
 //ENEMY
-
-
 function Enemy (x, y, w, h, type) {
     this.x = x;
     this.y = y;
@@ -60,23 +59,28 @@ function Enemy (x, y, w, h, type) {
     this.xspeed = 0;
     this.yspeed = 0;
     this.change = false;
+    this.vel = 0.5;
+    this.c = 0;
+    this.f = 0;
+    
     this.draw = function () {
+	this.c++;
+	if (this.c > 12) {this.f++; this.c = 0;}
+	if (this.f > 1) {this.f =0;}
+	ctx.drawImage(
+	    img_goomba, this.f*16, 0, 16, 16,
+	    this.x+worldX, this.y, this.w, this.h
+	);
 	if (this.type === 1) {
-	    ctx.drawImage(
-		img_goomba, 0, 0, 16, 16, this.x+worldX, this.y, this.w, this.h
-	    );
-	    if (this.change) {this.xspeed = +0.5;}
-	    else {this.xspeed = -0.5;}
+	    if (this.change) {this.xspeed = this.vel;}
+	    else {this.xspeed = -this.vel;}
 	    this.yspeed = 1;
 	}
 	if (this.type === 2) {
-	    ctx.drawImage(
-		img_goomba, 0, 0, 16, 16, this.x+worldX, this.y, this.w, this.h
-	    );
-	    if (this.change) {this.xspeed = -0.5;}
-	    else {this.xspeed = +0.5;}
+	    if (this.change) {this.xspeed = -this.vel;}
+	    else {this.xspeed = this.vel;}
 	    this.yspeed = 1;
-	}
+	}	
 	//HORIZONTAL COLLISION RECT
 	let horizontalRect = {
 	    x: this.x + this.xspeed,
@@ -106,7 +110,8 @@ function Enemy (x, y, w, h, type) {
 		}
 		this.x = horizontalRect.x;
 		this.xspeed = 0;
-		this.change=true;
+		if (this.change) {this.change = false;}
+		else {this.change=true;}
 	    }
 	    if (checkIn(verticalRect, borderRect)) {
 		while (checkIn(verticalRect, borderRect)) {
