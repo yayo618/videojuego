@@ -19,6 +19,13 @@ for (let i = 0; i < 3; i++) {
     borders.push(new Border(160, 192-16*i, 32, 16, 3));
 }
 borders.push(new Border(224, 144, 16, 16, 1));
+//enemy
+var img_goomba = new Image();
+img_goomba.src = "img/goomba.png";
+var enemies = [];
+enemies.push(new Enemy(230, 100, 16, 16, 1));
+enemies.push(new Enemy(100, 100, 16, 16, 2));
+
 //FUNCTION
 function Border (x, y, width, height, type) {
     this.x = x;
@@ -37,6 +44,81 @@ function Border (x, y, width, height, type) {
 	else if (this.type === 3) {
 	    ctx.drawImage(img_pipe1, this.x+worldX, this.y, this.width, this.height);	
 	}
+    }
+}
+
+//ENEMY
+
+
+function Enemy (x, y, w, h, type) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.type = type;
+
+    this.xspeed = 0;
+    this.yspeed = 0;
+    this.change = false;
+    this.draw = function () {
+	if (this.type === 1) {
+	    ctx.drawImage(
+		img_goomba, 0, 0, 16, 16, this.x+worldX, this.y, this.w, this.h
+	    );
+	    if (this.change) {this.xspeed = +0.5;}
+	    else {this.xspeed = -0.5;}
+	    this.yspeed = 1;
+	}
+	if (this.type === 2) {
+	    ctx.drawImage(
+		img_goomba, 0, 0, 16, 16, this.x+worldX, this.y, this.w, this.h
+	    );
+	    if (this.change) {this.xspeed = -0.5;}
+	    else {this.xspeed = +0.5;}
+	    this.yspeed = 1;
+	}
+	//HORIZONTAL COLLISION RECT
+	let horizontalRect = {
+	    x: this.x + this.xspeed,
+	    y: this.y,
+	    width: this.w,
+	    height: this.h
+	}
+	//VERTICAL COLLISION RECT	    
+	let verticalRect = {
+	    x: this.x,
+	    y: this.y + this.yspeed,
+	    width: this.w,
+	    height: this.h
+	}
+	//CHECK INTERSECTION
+	for (let i = 0; i< borders.length; i++) {
+	    let borderRect = {
+		x: borders[i].x,
+		y: borders[i].y,
+		width: borders[i].width,
+		height: borders[i].height
+	    }
+	    if (checkIn(horizontalRect, borderRect)) {
+		while (checkIn(horizontalRect, borderRect)) {
+		    if (this.xspeed<0) {horizontalRect.x+=0.1;}
+		    else {horizontalRect.x+=-0.1;}
+		}
+		this.x = horizontalRect.x;
+		this.xspeed = 0;
+		this.change=true;
+	    }
+	    if (checkIn(verticalRect, borderRect)) {
+		while (checkIn(verticalRect, borderRect)) {
+		    if (this.yspeed<0) {verticalRect.y+=0.1;}
+		    else {verticalRect.y+=-0.1;}
+		}
+		this.y = verticalRect.y;
+		this.yspeed = 0;
+	    }
+	}
+	this.x += this.xspeed;
+	this.y += this.yspeed;
     }
 }
 
