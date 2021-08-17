@@ -147,18 +147,27 @@ function draw(){
 	}
     }
     for (let i = 0; i < enemies.length; i++) {
-	let enemRect = {
+	let enemHRect = {
 	    x: enemies[i].x,
-	    y: enemies[i].y,
+	    y: enemies[i].y + 2,
 	    width: enemies[i].w,
-	    height: enemies[i].h
+	    height: enemies[i].h - 2
 	}
-	if (checkIn(horizontalRect, enemRect)) {
+	let enemVRect = {
+	    x: enemies[i].x + 1,
+	    y: enemies[i].y,
+	    width: enemies[i].w - 2,
+	    height: enemies[i].h
+	}	
+	if (checkIn(horizontalRect, enemHRect)) {
 	    /*while (checkIn(horizontalRect, enemRect)) {
 		choca= true;
 	    }*/
-	    choca= true;
-	    enemies[i].aplasta = true;
+	    choca = true;
+	}
+	if (checkIn(verticalRect, enemVRect)) {
+	    //choca = true;
+	    enemies[i].aplasta = true;	    
 	}
     }
     //show changes
@@ -168,7 +177,7 @@ function draw(){
 
     x += xspeed;
     y += yspeed;
-
+    if (choca) {x =0; y=0;}
     Mario(x, y, f, izz, dee);
 }
 
