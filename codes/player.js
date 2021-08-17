@@ -79,15 +79,7 @@ function draw(){
 	izz = true;
 	dee = false;
     }	
-    if (dee) {
-        ctx.drawImage(img, w*f, 0, w, h, x+worldX-2, y, w, h);
-    }
-    if (izz) {
-        ctx.scale(-1,1);
-        ctx.drawImage(img, w*f, 0, w, h, -x-16-worldX+2, y, w, h);
-	ctx.scale(-1,1);
-    }
- 
+     
     yspeed+=2;//habia q ponerlo arriba
 
     if (jump) {
@@ -166,13 +158,32 @@ function draw(){
 		choca= true;
 	    }*/
 	    choca= true;
+	    enemies[i].aplasta = true;
 	}
     }
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("choca: "+choca, 20, 20);
+    ctx.fillText("chocoa: "+choca, 20, 20);
 
     x += xspeed;
     y += yspeed;
+
+    Mario(x, y, f, izz, dee);
+}
+
+function Mario (x, y, f, iz, de) {
+    this.x = x;
+    this.y = y;
+    this.f = f;
+    this.iz = iz;
+    this.de = de;
+    if (this.de) {
+        ctx.drawImage(img, w*this.f, 0, w, h, this.x+worldX-2, this.y, w, h);
+    }
+    if (this.iz) {
+        ctx.scale(-1,1);
+        ctx.drawImage(img, w*this.f, 0, w, h, -this.x-16-worldX+2, this.y, w, h);
+	ctx.scale(-1,1);
+    }
 }

@@ -22,7 +22,8 @@ borders.push(new Border(288, 192, 16, 16, 1));
 var img_goomba = new Image();
 img_goomba.src = "img/goomba.png";
 var enemies = [];
-
+enemies.push(new Enemy(230, 100, 16, 16, 1));
+enemies.push(new Enemy(100, 100, 16, 16, 2));
 
 //FUNCTION
 function Border (x, y, width, height, type) {
@@ -44,8 +45,7 @@ function Border (x, y, width, height, type) {
 	}
     }
 }
-enemies.push(new Enemy(230, 100, 16, 16, 1));
-enemies.push(new Enemy(100, 100, 16, 16, 2));
+
 //ENEMY
 function Enemy (x, y, w, h, type) {
     this.x = x;
@@ -67,7 +67,7 @@ function Enemy (x, y, w, h, type) {
 	if (!this.aplasta){
 	    if (this.c > 12) {this.f++; this.c = 0;}
 	    if (this.f > 1) {this.f =0;}
-	} else {this.f = 3;}
+	} else {this.f = 2;}
 	ctx.drawImage(
 	    img_goomba, this.f*16, 0, 16, 16,
 	    this.x+worldX, this.y, this.w, this.h
@@ -75,7 +75,7 @@ function Enemy (x, y, w, h, type) {
 	if (this.type === 1) {
 	    if (this.change) {this.xspeed = this.vel;}
 	    else {this.xspeed = -this.vel;}
-	    this.yspeed = 1;
+	    this.yspeed = 2;
 	}
 	if (this.type === 2) {
 	    if (this.change) {this.xspeed = -this.vel;}
@@ -111,6 +111,7 @@ function Enemy (x, y, w, h, type) {
 		}
 		this.x = horizontalRect.x;
 		this.xspeed = 0;
+		//REBOTA
 		if (this.change) {this.change = false;}
 		else {this.change=true;}
 	    }
@@ -123,21 +124,10 @@ function Enemy (x, y, w, h, type) {
 		this.yspeed = 0;
 	    }
 	}
+
 	this.x += this.xspeed;
 	this.y += this.yspeed;
     }
-    /*this.colisiona = function (mx, my) {
-	//MARIO COLLISION
-	this.mx = mx;
-	this.my = my;
-	let marioRect = {
-	    x: this.mx,
-	    y: this.my,
-	    width: 16,
-	    height: 14
-	}
-	if (checkIn(marioRect, verticalRect)) {this.aplasta = true;}
-    }*/
 }
 
 //COLLISION
