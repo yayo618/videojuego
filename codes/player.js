@@ -3,12 +3,14 @@ var izz = false;
 var dee = true;
 var det= true;
 var jump = false;
+var x = 100;
+var y = 20;
 var w = 16;
 var h = 16;
 let f = 1;
 let c = 0;
-var x = 100;
-var y = 20;
+var worldX = 0;
+
 //counts jumps
 let cc = 0;
 
@@ -25,6 +27,8 @@ ff=0;
 
 var scrolling = 50;
 img.src = "img/marioAll.png";
+
+var choca= false;
 
 function draw(){
     //screen
@@ -150,10 +154,24 @@ function draw(){
   	    caee = false;
 	}
     }
+    for (let i = 0; i < enemies.length; i++) {
+	let enemRect = {
+	    x: enemies[i].x,
+	    y: enemies[i].y,
+	    width: enemies[i].w,
+	    height: enemies[i].h
+	}
+	if (checkIn(horizontalRect, enemRect)) {
+	    /*while (checkIn(horizontalRect, enemRect)) {
+		choca= true;
+	    }*/
+	    choca= true;
+	}
+    }
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("caendoo: "+caee, 20, 20);
+    ctx.fillText("choca: "+choca, 20, 20);
 
     x += xspeed;
     y += yspeed;

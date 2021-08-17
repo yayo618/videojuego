@@ -1,5 +1,3 @@
-var worldX = 0;
-
 var borders = [];
 var img_piso = new Image();
 img_piso.src = "img/tile-piso.png";
@@ -24,8 +22,7 @@ borders.push(new Border(288, 192, 16, 16, 1));
 var img_goomba = new Image();
 img_goomba.src = "img/goomba.png";
 var enemies = [];
-enemies.push(new Enemy(230, 100, 16, 16, 1));
-enemies.push(new Enemy(100, 100, 16, 16, 2));
+
 
 //FUNCTION
 function Border (x, y, width, height, type) {
@@ -47,7 +44,8 @@ function Border (x, y, width, height, type) {
 	}
     }
 }
-
+enemies.push(new Enemy(230, 100, 16, 16, 1));
+enemies.push(new Enemy(100, 100, 16, 16, 2));
 //ENEMY
 function Enemy (x, y, w, h, type) {
     this.x = x;
@@ -62,11 +60,14 @@ function Enemy (x, y, w, h, type) {
     this.vel = 0.5;
     this.c = 0;
     this.f = 0;
+    this.aplasta = false;
     
     this.draw = function () {
 	this.c++;
-	if (this.c > 12) {this.f++; this.c = 0;}
-	if (this.f > 1) {this.f =0;}
+	if (!this.aplasta){
+	    if (this.c > 12) {this.f++; this.c = 0;}
+	    if (this.f > 1) {this.f =0;}
+	} else {this.f = 3;}
 	ctx.drawImage(
 	    img_goomba, this.f*16, 0, 16, 16,
 	    this.x+worldX, this.y, this.w, this.h
@@ -125,6 +126,18 @@ function Enemy (x, y, w, h, type) {
 	this.x += this.xspeed;
 	this.y += this.yspeed;
     }
+    /*this.colisiona = function (mx, my) {
+	//MARIO COLLISION
+	this.mx = mx;
+	this.my = my;
+	let marioRect = {
+	    x: this.mx,
+	    y: this.my,
+	    width: 16,
+	    height: 14
+	}
+	if (checkIn(marioRect, verticalRect)) {this.aplasta = true;}
+    }*/
 }
 
 //COLLISION
