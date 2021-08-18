@@ -151,7 +151,7 @@ function draw(){
 	    x: enemies[i].x,
 	    y: enemies[i].y + 2,
 	    width: enemies[i].w,
-	    height: enemies[i].h - 2
+	    height: enemies[i].h
 	}
 	let enemVRect = {
 	    x: enemies[i].x + 1,
@@ -175,9 +175,10 @@ function draw(){
     ctx.fillStyle = "black";
     ctx.fillText("chocoa: "+choca, 20, 20);
 
+    if (choca) {xspeed = 0; yspeed =0; f=6;}
     x += xspeed;
     y += yspeed;
-    if (choca) {x =0; y=0;}
+
     Mario(x, y, f, izz, dee);
 }
 
