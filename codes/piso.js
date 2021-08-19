@@ -65,10 +65,12 @@ function Enemy (x, y, w, h, type) {
     
     this.draw = function () {
 	if (!this.aplasta){
-	    this.c++;
-	    if (this.c > 12) {this.f++; this.c = 0;}
-	    if (this.f > 1) {this.f = 0;}
-	    this.ff = this.f;
+	    if (!choca) {	
+	        this.c++;
+	        if (this.c > 12) {this.f++; this.c = 0;}
+	        if (this.f > 1) {this.f = 0;}
+	        this.ff = this.f;
+	    }
 	    if (this.type === 1) {
 		if (this.change) {this.xspeed = this.vel;}
 		else {this.xspeed = -this.vel;}
@@ -79,9 +81,10 @@ function Enemy (x, y, w, h, type) {
 		else {this.xspeed = this.vel;}
 		this.yspeed = 2;
 	    }	
-	} else {this.f = 2; this.x = 0; this.y = 0;}
-
+	} else {this.f = 2; this.xspeed = 0; this.yspeed = 0;}
+	//global
 	if (choca) {this.xspeed = 0; this.yspeed = 0; this.f = this.ff;}
+
 	ctx.drawImage(
 	    img_goomba, this.f*16, 0, 16, 16,
 	    this.x+worldX, this.y, this.w, this.h

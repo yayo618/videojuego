@@ -3,6 +3,7 @@ var izz = false;
 var dee = true;
 var det= true;
 var jump = false;
+var rebota =false;
 var x = 100;
 var y = 20;
 var w = 16;
@@ -82,16 +83,23 @@ function draw(){
      
     yspeed+=2;//habia q ponerlo arriba
 
-    if (jump) {
+    if (rebota) {
 	yspeed=-2;
+	cc++;
+	if (cc>12) {yspeed=+2;}
+    } else if (jump) {
+	yspeed=-2;
+	    
 	if (!caee) {saltando = true;}
 	cc++;
-	if (cc>40 || caee) {yspeed=+2;}
-    }
-    if (!jump) {
+	if (cc>40 || caee) {
+	   yspeed=+2;
+	}
+    }  else {//if !jump
 	if (cae) {caee = true;}
     }
-    cae = true;
+    if (!rebota) {cae = true;cc=0;}
+	
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
     else if (xspeed<-maxspeed) {xspeed=-maxspeed}
@@ -142,38 +150,44 @@ function draw(){
 	    saltando = false;
 	    cc = 0;
 	    jump = false;
+	rebota=false;
 	    cae = false;
   	    caee = false;
 	}
     }
     for (let i = 0; i < enemies.length; i++) {
 	let enemHRect = {
-	    x: enemies[i].x,
+	    x: enemies[i].x+1,
 	    y: enemies[i].y + 2,
-	    width: enemies[i].w,
-	    height: enemies[i].h
+	    width: enemies[i].w-2,
+	    height: enemies[i].h -2
 	}
 	let enemVRect = {
-	    x: enemies[i].x + 1,
+	    x: enemies[i].x + 2,
 	    y: enemies[i].y,
-	    width: enemies[i].w - 2,
+	    width: enemies[i].w - 4,
 	    height: enemies[i].h
 	}	
 	if (checkIn(horizontalRect, enemHRect)) {
 	    /*while (checkIn(horizontalRect, enemRect)) {
 		choca= true;
 	    }*/
-	    choca = true;
+	    if (!enemies[i].aplasta) {
+	        choca = true;
+	    }
 	}
 	if (checkIn(verticalRect, enemVRect)) {
 	    //choca = true;
-	    enemies[i].aplasta = true;	    
+	    if (!enemies[i].aplasta) {
+	        rebota=true;
+	    }
+	    enemies[i].aplasta = true;
 	}
     }
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("chocoa: "+choca, 20, 20);
+    ctx.fillText("choca: "+choca, 20, 20);
 
     if (choca) {xspeed = 0; yspeed =0; f=6;}
     x += xspeed;
