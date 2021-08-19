@@ -14,6 +14,7 @@ var worldX = 0;
 
 //counts jumps
 let cc = 0;
+let ccc = 0;
 
 var friction = 0.2;
 var xspeed = 0;
@@ -85,8 +86,9 @@ function draw(){
 
     if (rebota) {
 	yspeed=-2;
-	cc++;
-	if (cc>12) {yspeed=+2;}
+	ccc++;
+	if (ccc>12) {yspeed=+2;}
+	    cc=0;
     } else if (jump) {
 	yspeed=-2;
 	    
@@ -98,7 +100,7 @@ function draw(){
     }  else {//if !jump
 	if (cae) {caee = true;}
     }
-    if (!rebota) {cae = true;cc=0;}
+    cae = true;
 	
     
     if (xspeed>maxspeed) {xspeed=maxspeed;}
@@ -149,6 +151,7 @@ function draw(){
 	    //limit jump
 	    saltando = false;
 	    cc = 0;
+	    ccc = 0;
 	    jump = false;
 	rebota=false;
 	    cae = false;
@@ -187,7 +190,7 @@ function draw(){
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("choca: "+choca, 20, 20);
+    ctx.fillText("chocaa: "+choca, 20, 20);
 
     if (choca) {xspeed = 0; yspeed =0; f=6;}
     x += xspeed;
