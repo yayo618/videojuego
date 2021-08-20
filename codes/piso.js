@@ -23,6 +23,7 @@ var img_goomba = new Image();
 img_goomba.src = "img/goomba.png";
 var enemies = [];
 enemies.push(new Enemy(230, 100, 16, 16, 1));
+enemies.push(new Enemy(262, 100, 16, 16, 1));
 enemies.push(new Enemy(100, 100, 16, 16, 2));
 
 //FUNCTION

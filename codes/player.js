@@ -87,8 +87,13 @@ function draw(){
     if (rebota) {
 	yspeed=-2;
 	ccc++;
-	if (ccc>12) {yspeed=+2;}
-	    cc=0;
+	if (ccc>12) {
+	    yspeed=+2;
+	    //rebote seguido
+	    rebota=false;
+	    ccc = 0;
+	}
+	cc=0;
     } else if (jump) {
 	yspeed=-2;
 	    
@@ -130,10 +135,8 @@ function draw(){
 	    width: borders[i].width,
 	    height: borders[i].height
 	}
-	//check = checkIn(horizontalRect, borderRect);
 	if (checkIn(horizontalRect, borderRect)) {
 	    while (checkIn(horizontalRect, borderRect)) {
-		//horizontalRect.x -= Math.sign(xspeed);
 		if (xspeed<0) {horizontalRect.x-=-0.1;}
 		else {horizontalRect.x-=0.1;}
 	    }
@@ -142,7 +145,6 @@ function draw(){
 	}
 	if (checkIn(verticalRect, borderRect)) {
 	    while (checkIn(verticalRect, borderRect)) {
-		//verticalRect.y -= Math.sign(yspeed);
 		if (yspeed<0) {verticalRect.y+=0.1;}
 		else {verticalRect.y+=-0.1;}
 	    }
@@ -153,7 +155,7 @@ function draw(){
 	    cc = 0;
 	    ccc = 0;
 	    jump = false;
-	rebota=false;
+	    rebota=false;
 	    cae = false;
   	    caee = false;
 	}
