@@ -172,25 +172,27 @@ function draw(){
 	    height: enemies[i].h
 	}	
 	if (checkIn(horizontalRect, enemHRect)) {
-	    /*while (checkIn(horizontalRect, enemRect)) {
-		choca= true;
-	    }*/
 	    if (!enemies[i].aplasta) {
 	        choca = true;
 	    }
 	}
 	if (checkIn(verticalRect, enemVRect)) {
-	    //choca = true;
 	    if (!enemies[i].aplasta) {
 	        rebota=true;
 	    }
 	    enemies[i].aplasta = true;
 	}
+	if (enemies[i].aplasta) {
+		enemies[i].count++;
+		if (enemies[i].count > 40){
+		enemies.splice(i,1)
+		}
+	}
     }
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("chocaa: "+choca, 20, 20);
+    ctx.fillText("choca: "+choca, 20, 20);
 
     if (choca) {xspeed = 0; yspeed =0; f=6;}
     x += xspeed;
