@@ -160,6 +160,7 @@ function draw(){
   	    caee = false;
 	}
     }
+
     for (let i = 0; i < enemies.length; i++) {
 	let enemHRect = {
 	    x: enemies[i].x+1,
@@ -185,12 +186,38 @@ function draw(){
 	    enemies[i].aplasta = true;
 	}
 	if (enemies[i].aplasta) {
-		enemies[i].count++;
-		if (enemies[i].count > 40){
-		enemies.splice(i,1)
-		}
+	    enemies[i].count++;
+	    if (enemies[i].count > 40) {
+		enemies.splice(i,1);
+            }
+	    //enemies.splice(i,1);
 	}
     }
+    
+    //coll btw enemy
+    for (let i = 0; i < enemies.length - 1; i++) {
+	for (let j = i + 1; j < enemies.length; j++) {
+	    let en1Rect = {
+		x: enemies[i].x,
+		y: enemies[i].y,
+		width: enemies[i].w,
+		height: enemies[i].h
+	    }
+	    let en2Rect = {
+	    	x: enemies[j].x,
+		y: enemies[j].y,
+		width: enemies[j].w,
+		height: enemies[j].h
+	    }
+	    if (checkIn(en1Rect, en2Rect)) {
+		if (enemies[i].change) {enemies[i].change = false;}
+		else {enemies[i].change=true;}
+		if (enemies[j].change) {enemies[j].change = false;}
+		else {enemies[j].change=true;}
+	    }
+	}
+    }
+
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
