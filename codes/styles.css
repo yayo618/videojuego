@@ -1,6 +1,8 @@
 body{
     background:#ccc;
     touch-action:none;
+    margin:0;
+    padding:0;
 }
 #my-img{
     image-rendering:pixelated;
@@ -18,17 +20,21 @@ body{
     -khtml-user-select:none;
 }
 #canv-pad{
-    border:1px solid darkorange;
+    border:1px solid red;
     height:304px;
     width:100%;
+    display:flex;
+    flex-flow:row nowrap;
+    align-items:center;
+    justify-content:space-between;
 }
 #mov-cnv{
     border:1px solid orange;
-    float:left;
+/*    float:left;*/
 }
 #jump{
     height:300;
     width:300;
     border:1px solid orange;
-    float:right;
+/*    float:right;*/
 }

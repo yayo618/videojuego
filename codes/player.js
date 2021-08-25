@@ -221,7 +221,7 @@ function draw(){
     //show changes
     ctx.font = "11px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText("choca: "+choca, 20, 20);
+ //   ctx.fillText("firstOut: "+firstTouchPressOut, 20, 20);
 
     if (choca) {xspeed = 0; yspeed =0; f=6;}
     x += xspeed;

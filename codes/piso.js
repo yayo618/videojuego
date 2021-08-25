@@ -26,7 +26,6 @@ enemies.push(new Enemy(230, 100, 16, 16, 1));
 enemies.push(new Enemy(262, 100, 16, 16, 1));
 enemies.push(new Enemy(100, 100, 16, 16, 2));
 enemies.push(new Enemy(132, 100, 16, 16, 2));
-enemies.push(new Enemy(68, 100, 16, 16, 1));
 
 //FUNCTION
 function Border (x, y, width, height, type) {

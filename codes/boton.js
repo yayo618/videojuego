@@ -22,7 +22,7 @@ function Crl () {
 }
 Crc (); Crl ();
 
-function animaxion () {//diferente nombre que my-cnv
+function animaxion () {//diferente nombre que el de my-cnv
     renderCanvas();
     requestAnimationFrame(animaxion);
 }
@@ -49,28 +49,45 @@ function renderCanvas () {
 	
 	vx = ((canvas.width/2) - bbx)/50;
 	vy = ((canvas.height/2) -bby)/50;
-	/*
-	nsx = -vx;
-	nsy = -vy;
-	
-	context.font = "30px, Arial";
-	context.fillText('vx: '+vx.toString(10),20,20);
-	context.fillText('vy: '+vy.toString(10),20,240);
-	*/
+
+	//mueve mario
 	if (vx>0) {movDe=false;movIz=true;}
 	else {movIz=false;movDe=true;}
     }
 }
 
+var firstTouchPressOut;//para el problema de presionar botones
+window.addEventListener("touchmove", function (e) {
+    if (e.touches[0].clientX > canvas.offsetLeft &&
+        e.touches[0].clientX < (canvas.offsetLeft + canvas.offsetWidth) &&
+        e.touches[0].clientY > canvas.offsetTop &&
+        e.touches[0].clientY < (canvas.offsetTop + canvas.offsetHeight)) {
+	firstTouchPressOut = false;
+    } else {
+	firstTouchPressOut = true;
+    }
+}, false);
+
 canvas.addEventListener("touchstart", function (e) {
     drawing = true;
     det = false;
-    coorPos.x = e.touches[0].clientX - rect.left;
-    coorPos.y = e.touches[0].clientY - rect.top;   
+    
+    if (firstTouchPressOut) {
+	coorPos.x = e.touches[1].clientX - rect.left;
+	coorPos.y = e.touches[1].clientY - rect.top;
+    } else {
+	coorPos.x = e.touches[0].clientX - rect.left;
+	coorPos.y = e.touches[0].clientY - rect.top;
+    }    
 }, false);
 canvas.addEventListener("touchmove", function (e) {
-    coorPos.x = e.touches[0].clientX - rect.left;
-    coorPos.y = e.touches[0].clientY - rect.top;   
+    if (firstTouchPressOut) {
+	coorPos.x = e.touches[1].clientX - rect.left;
+	coorPos.y = e.touches[1].clientY - rect.top;
+    } else {
+	coorPos.x = e.touches[0].clientX - rect.left;
+	coorPos.y = e.touches[0].clientY - rect.top;
+    }
 }, false);
 canvas.addEventListener("touchend", function (e) {
     drawing = false;
@@ -80,4 +97,6 @@ canvas.addEventListener("touchend", function (e) {
     context.clearRect(0,0,canvas.width,canvas.height);
     Crc();
     Crl();
+
+    firstTouchPressOut = false;//por siaca
 }, false);

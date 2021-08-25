@@ -12,12 +12,12 @@ animation();
 
 
 //eventos botones
-var btnIz = document.getElementById("iz");
+/*var btnIz = document.getElementById("iz");
 var btnDe = document.getElementById("de");
 btnIz.addEventListener("touchstart", function(e) {movIz=true;det=false;},false);
 btnIz.addEventListener("touchend", function (e) {movIz=false;det=true;}, false);
 btnDe.addEventListener("touchstart", function(e) {movDe=true;det=false;}, false);
-btnDe.addEventListener("touchend", function (e) {movDe=false;det=true;}, false);
+btnDe.addEventListener("touchend", function (e) {movDe=false;det=true;}, false);*/
 var btnJump = document.getElementById("jump");
 btnJump.addEventListener("touchstart", function (e) {jump=true;}, false);
 btnJump.addEventListener("touchend", function (e) {jump=false;}, false);
