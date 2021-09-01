@@ -41,5 +41,8 @@ btnDe.addEventListener("touchend", function (e) {movDe=false;det=true;}, false);
 var btnJump = document.getElementById("jump");
 btnJump.addEventListener("touchstart", function (e) {jump=true;}, false);
 btnJump.addEventListener("touchend", function (e) {jump=false;}, false);
+var btnJumpV = document.getElementById("jump-V");
+btnJumpV.addEventListener("touchstart", function (e) {jump=true;}, false);
+btnJumpV.addEventListener("touchend", function (e) {jump=false;}, false);
 
 

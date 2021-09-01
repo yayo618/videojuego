@@ -57,6 +57,25 @@ function renderCanvas () {
 }
 
 var firstTouchPressOut;//para el problema de presionar botones
+window.addEventListener("touchstart", function (e) {
+    if (e.touches[0].clientX > canvas.offsetLeft &&
+        e.touches[0].clientX < (canvas.offsetLeft + canvas.offsetWidth) &&
+        e.touches[0].clientY > canvas.offsetTop &&
+        e.touches[0].clientY < (canvas.offsetTop + canvas.offsetHeight)) {
+	firstTouchPressOut = false;
+    } else {
+	firstTouchPressOut = true;
+    }
+    //el otro
+    if (e.touches[0].clientX > canvasV.offsetLeft &&
+        e.touches[0].clientX < (canvasV.offsetLeft + canvasV.offsetWidth) &&
+        e.touches[0].clientY > canvasV.offsetTop &&
+        e.touches[0].clientY < (canvasV.offsetTop + canvasV.offsetHeight)) {
+	firstTouchPressOutV = false;
+    } else {
+	firstTouchPressOutV = true;
+    }
+}, false);
 window.addEventListener("touchmove", function (e) {
     if (e.touches[0].clientX > canvas.offsetLeft &&
         e.touches[0].clientX < (canvas.offsetLeft + canvas.offsetWidth) &&
@@ -66,6 +85,15 @@ window.addEventListener("touchmove", function (e) {
     } else {
 	firstTouchPressOut = true;
     }
+    //el otro
+    if (e.touches[0].clientX > canvasV.offsetLeft &&
+        e.touches[0].clientX < (canvasV.offsetLeft + canvasV.offsetWidth) &&
+        e.touches[0].clientY > canvasV.offsetTop &&
+        e.touches[0].clientY < (canvasV.offsetTop + canvasV.offsetHeight)) {
+	firstTouchPressOutV = false;
+    } else {
+	firstTouchPressOutV = true;
+    }    
 }, false);
 
 canvas.addEventListener("touchstart", function (e) {

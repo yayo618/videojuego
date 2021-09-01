@@ -5,19 +5,29 @@
     <link rel="stylesheet" href="codes/styles.css">
   </head>
   <body id="container">
-    <button class="but" id="fullscr" onclick="fullscreenOpen();">fullscreen</button>
- <!--    <button class="but" id="de">derecha</button>-->
+
+    
+    <button id="fullscr" onclick="fullscreenOpen();">fullscreen</button>
+    <!--    <button class="but" id="de">derecha</button>-->
+    <div id="canv-pad-V">
+      <canvas id="mov-cnv-V" width="300" height="300"></canvas>
+      <button class="but" id="jump-V">Jump</button>
+    </div>
+    
     <canvas id="my-canv" width="256px" height="240px"></canvas>
-    <!--boton pad-->    
+    <!--boton pad-->
+
     <div id="canv-pad">
       <canvas id="mov-cnv" width="300" height="300"></canvas>
       <button class="but" id="jump">Jump</button>
     </div>
+
 
     <script src="codes/piso.js"></script>
     <script src="codes/player.js"></script>    
     <script src="codes/main.js"></script>
 
     <script src="codes/boton.js"></script>
+    <script src="codes/boton-V.js"></script>    
   </body>
 </html>
