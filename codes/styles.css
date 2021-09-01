@@ -7,7 +7,9 @@
 /*#my-img{
     image-rendering:pixelated;
 }*/
+#container{background-color:#7d7d7d;}
 #fullscr{
+    float:rigth;
     position:absolute;
     -webkit-user-select:none;
     -moz-user-select:none;
@@ -16,22 +18,29 @@
 }
 #my-canv{
     /*border:1px solid black;*/
+    margin-top:20px;
     width:100%;
     height:auto;
     image-rendering:pixelated;
 }
 .but{
+    border:0;
     height:300;
     width:300;
-    border:1px solid orange;
+    background-color:orange;
+    /*border:1px solid orange;*/
+    border-radius:50%;
+    transform:scale(0.5, 0.5);
+    
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
     -khtml-user-select:none;
 }
+
 #canv-pad{
-    border:1px solid red;
-    height:304px;
+/*    border:1px solid red;*/
+    height:300px;
     width:100%;
 
     display:flex;
@@ -41,15 +50,9 @@
 }
 
 #mov-cnv{
-    border:1px solid orange;
-/*    float:left;*/
+/*    border:1px solid orange;
+    float:left;*/
 }
-/*#jump{
-    height:300;
-    width:300;
-    border:1px solid orange;
-    float:right;
-}*/
 
 @media screen and (orientation:landscape){
     body {
@@ -68,7 +71,7 @@
     }
     #canv-pad{
 	position:absolute;
-        border:1px solid red;
+        /*border:1px solid red;*/
 	top:50vh;
         height:305px;
         width:100%;
@@ -117,16 +120,16 @@
 	display:none;
     }
     #container{
-	background-color:#ccc;
+	background-color:black;
 /*	border:1px solid blue;*/
     }
 
     #canv-pad-V{
 	z-index:2;
 	position:absolute;
-	margin-top:20;
-	border:1px solid pink;
-	height:1300px;
+	margin-top:0;
+	/*border:1px solid pink;*/
+	height:100%;
 	width:304px;
 
 	display:flex;
@@ -140,8 +143,8 @@
     }
     #jump-V{
 	position:absolute;
-	margin-top:800px;
+	margin-top:77vh;
     }
-    
+    #fullscr{display:none;}
 }
 
