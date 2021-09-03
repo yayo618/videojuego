@@ -21,10 +21,14 @@ borders.push(new Border(288, 192, 16, 16, 1));
 //enemy
 var img_goomba = new Image();
 img_goomba.src = "img/goomba.png";
+var img_turtle = new Image();
+img_turtle.src = "img/turtle.png";
+var img_enemy;
+
 var enemies = [];
 enemies.push(new Enemy(230, 100, 16, 16, 1));
 enemies.push(new Enemy(262, 100, 16, 16, 1));
-enemies.push(new Enemy(100, 100, 16, 16, 2));
+enemies.push(new Enemy(100, 100, 16, 24, 3));
 enemies.push(new Enemy(132, 100, 16, 16, 2));
 
 //FUNCTION
@@ -65,10 +69,23 @@ function Enemy (x, y, w, h, type) {
     this.ff = 0;
     this.aplasta = false;
     this.count = 0;
+
+    this.yy = 0; 
+//    this.fy = 0;
     
     this.draw = function () {
+	//direccion q mueve
+	if (this.aplasta){
+	    if (this.type === 1 || this.type === 2) {
+		img_enemy = img_goomba;		
+		this.f = 2; this.xspeed = 0; this.yspeed = 0; this.ff = this.f;
+	    }
+	    if (this.type === 3) {
+		img_enemy = img_turtle;
+		this.f = 3; this.xspeed = 0; this.yspeed = 0; 
+	    }
 	    
-	if (!this.aplasta){
+	} else {
 	    if (this.xspeed != 0) {	
 	        this.c++;
 	        if (this.c > 12) {this.f++; this.c = 0;}
@@ -79,18 +96,32 @@ function Enemy (x, y, w, h, type) {
 		if (this.change) {this.xspeed = this.vel;}
 		else {this.xspeed = -this.vel;}
 		this.yspeed = 2;
+
+		img_enemy = img_goomba;
+		this.yy = 16;
 	    }
 	    if (this.type === 2) {
 		if (this.change) {this.xspeed = -this.vel;}
 		else {this.xspeed = this.vel;}
 		this.yspeed = 2;
-	    }	
-	} else {this.f = 2; this.xspeed = 0; this.yspeed = 0; this.ff = this.f;}
+
+		img_enemy = img_goomba;
+		this.yy = 16;
+	    }
+	    if (this.type === 3) {
+		if (this.change) {this.xspeed = this.vel;}
+		else {this.xspeed = -this.vel;}
+		this.yspeed = 2;
+
+		img_enemy = img_turtle;
+		this.yy = 24;
+	    }
+	}
 	//global
 	if (choca) {this.xspeed = 0; this.yspeed = 0; this.f = this.ff;}
 
 	ctx.drawImage(
-	    img_goomba, this.f*16, 0, 16, 16,
+	    img_enemy, this.f*16, 0, 16, this.yy,
 	    this.x+worldX, this.y, this.w, this.h
 	);
 
