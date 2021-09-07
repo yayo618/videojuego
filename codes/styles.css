@@ -4,9 +4,6 @@
     padding:0;
     box-sizing:border-box;
 }
-/*#my-img{
-    image-rendering:pixelated;
-}*/
 #container{background-color:#7d7d7d;}
 #fullscr{
     float:rigth;
@@ -23,7 +20,23 @@
     height:auto;
     image-rendering:pixelated;
 }
+#canv-pad{
+   /*border:1px solid red;*/
+    height:300px;
+    width:100%;
+
+    /*display:flex;
+    flex-flow:row nowrap;
+    align-items:center;
+    justify-content:space-between;*/
+}
+
+#mov-cnv{
+/*    border:1px solid orange;*/
+    float:left;
+}
 .but{
+    float:right;
     border:0;
     height:300;
     width:300;
@@ -37,23 +50,18 @@
     -ms-user-select:none;
     -khtml-user-select:none;
 }
-
-#canv-pad{
-/*    border:1px solid red;*/
-    height:300px;
-    width:100%;
-
-    display:flex;
-    flex-flow:row nowrap;
-    align-items:center;
-    justify-content:space-between;
+@media (max-width:799px) {
+    #canv-pad{
+	position:absolute;
+        margin-top:0px;
+    }
+    #mov-cnv{
+	width:100px;
+	height:100px;
+    }
+    .but{transform:scale(0.3, 0.3);}
 }
-
-#mov-cnv{
-/*    border:1px solid orange;
-    float:left;*/
-}
-
+/*
 @media screen and (orientation:landscape){
     body {
 	touch-action:none;
@@ -66,12 +74,10 @@
     #my-canv{
         height:100%;
         width:auto;
-/*	flex-flow:row nowrap;*/
         image-rendering:pixelated;
     }
     #canv-pad{
 	position:absolute;
-        /*border:1px solid red;*/
 	top:50vh;
         height:305px;
         width:100%;
@@ -81,42 +87,24 @@
         align-items:center;
         justify-content:space-between;
     }
-    /*.hide-scrollbar::-webkit-scrollbar {
-	display:none;
-    }
-    .hide-scrollbar {
-        scrollbar-width:none;
-	-ms-overflow-style:none;
-    }*/
     #nav-bar {
 	min-height:0;
 	max-height:0;
 	height:0;
 	transform:scaleY;
     }
-}
+}*/
 #canv-pad-V{display:none;}
 @media all and (display-mode:fullscreen) {
     #my-canv{
 	position:absolute;
-	/*	border:1px solid blue;*/
+	/*border:1px solid blue;*/
 	transform:rotate(90deg) scale(calc(16/15),calc(16/15));	
- 	/*	width:100%;
+ 	/*width:100%;
 	height:auto;*/
 	margin-top:21vh;
     }
     #canv-pad{
-	/*position:absolute;
-	transform:rotate(90deg);
-        border:1px solid red;
-	margin-top:35vh;
-        height:305px;
-        width:1300px;
-
-        display:flex;
-        flex-flow:row nowrap;
-        align-items:center;
-        justify-content:space-between;*/
 	display:none;
     }
     #container{
@@ -145,6 +133,8 @@
 	position:absolute;
 	margin-top:77vh;
     }
-    #fullscr{display:none;}
+    #fullscr{
+ 	display:none;
+    }
 }
 

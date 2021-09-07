@@ -5,13 +5,8 @@ var elem = document.documentElement;
 if (window.innerWidth > window.innerHeight) {
 	fullscreenOpen();
 //	screen.orientation.lock('landscape');
-} else {alert("portrait");}
+} //else {alert("portrait");}
 function fullscreenOpen () {
-//    cnv.height = 256;
-    //    cnv.width = 240;
-//    cnv.width = 512;
-//    cnv.height = 240;
-    
     if (elem.requestFullscreen) {
 	elem.requestFullscreen();
     } else if (elem.webkitRequestFullscreen) {
