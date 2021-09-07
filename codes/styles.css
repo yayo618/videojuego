@@ -22,7 +22,7 @@
 }
 #canv-pad{
    /*border:1px solid red;*/
-    height:300px;
+    height:150px;
     width:100%;
 
     /*display:flex;
@@ -38,8 +38,8 @@
 .but{
     float:right;
     border:0;
-    height:300;
-    width:300;
+    height:150px;
+    width:150px;
     background-color:orange;
     /*border:1px solid orange;*/
     border-radius:50%;
@@ -50,7 +50,8 @@
     -ms-user-select:none;
     -khtml-user-select:none;
 }
-@media (max-width:799px) {
+
+/*@media (max-width:799px) {
     #canv-pad{
 	position:absolute;
         margin-top:0px;
@@ -61,7 +62,7 @@
     }
     .but{transform:scale(0.3, 0.3);}
 }
-/*
+
 @media screen and (orientation:landscape){
     body {
 	touch-action:none;
@@ -118,7 +119,7 @@
 	margin-top:0;
 	/*border:1px solid pink;*/
 	height:100%;
-	width:304px;
+	width:150px;
 
 	display:flex;
 	flex-flow:row nowrap;
@@ -138,3 +139,16 @@
     }
 }
 
+@media (hover:hover) and (pointer:fine) {
+    #fullscr{
+	display:none;
+    }    
+    #my-canv{
+	margin-top:0vh;	
+	height:100%;
+	width:auto;
+    }
+    #canv-pad{
+	display:none;
+    }
+}

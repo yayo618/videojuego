@@ -40,4 +40,14 @@ var btnJumpV = document.getElementById("jump-V");
 btnJumpV.addEventListener("touchstart", function (e) {jump=true;}, false);
 btnJumpV.addEventListener("touchend", function (e) {jump=false;}, false);
 
-
+//teclado
+document.addEventListener("keydown", function (e) {
+    if (e.key === "a" || e.key === "ArrowLeft") {det=false;movDe=false;movIz=true;}
+    if (e.key === "d" || e.key === "ArrowRight") {det=false;movIz=false;movDe=true;}
+    if (e.key === "w" || e.key === "ArrowUp") {jump=true;}
+});
+document.addEventListener("keyup", function (e) {
+    if (e.key === "a" || e.key === "ArrowLeft") {movDe=false;movIz=false;det=true;}
+    if (e.key === "d" || e.key === "ArrowRight") {movIz=false;movDe=false;det=true;}
+    if (e.key === "w" || e.key === "ArrowUp") {jump=false;}
+});

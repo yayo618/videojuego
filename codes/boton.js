@@ -9,14 +9,14 @@ function Crc () {
     context.strokeStyle = "orange";
     context.lineWidth = 3;
     context.beginPath();
-    context.arc(canvas.width/2, canvas.height/2, 100, 0, Math.PI*2, true);
+    context.arc(canvas.width/2, canvas.height/2, 70, 0, Math.PI*2, true);
     context.closePath();
     context.stroke();
 }
 function Crl () {
     context.fillStyle = "orange";
     context.beginPath();
-    context.arc(canvas.width/2, canvas.height/2, 45, 0, Math.PI*2, true);
+    context.arc(canvas.width/2, canvas.height/2, 35, 0, Math.PI*2, true);
     context.closePath();
     context.fill();
 }
@@ -35,15 +35,15 @@ function renderCanvas () {
 	bx = (canvas.width/2) - coorPos.x;
 	by = (canvas.height/2) - coorPos.y;
 	dd = Math.sqrt(Math.pow(bx, 2) + Math.pow(by, 2));
-	if (dd > 100) {
-	    bbx = (canvas.width/2) - (bx*100/dd);
-	    bby = (canvas.height/2) - (by*100/dd);
+	if (dd > 75) {
+	    bbx = (canvas.width/2) - (bx*75/dd);
+	    bby = (canvas.height/2) - (by*75/dd);
 	} else {
 	    bbx = coorPos.x;
 	    bby = coorPos.y;
 	}
 	context.beginPath();
-	context.arc(bbx, bby, 45, 0, Math.PI*2, true);
+	context.arc(bbx, bby, 35, 0, Math.PI*2, true);
 	context.closePath();
 	context.fill();
 	

@@ -9,14 +9,14 @@ function CrcV () {
     contextV.strokeStyle = "orange";
     contextV.lineWidth = 3;
     contextV.beginPath();
-    contextV.arc(canvasV.width/2, canvasV.height/2, 100, 0, Math.PI*2, true);
+    contextV.arc(canvasV.width/2, canvasV.height/2, 70, 0, Math.PI*2, true);
     contextV.closePath();
     contextV.stroke();
 }
 function CrlV () {
     contextV.fillStyle = "orange";
     contextV.beginPath();
-    contextV.arc(canvasV.width/2, canvasV.height/2, 45, 0, Math.PI*2, true);
+    contextV.arc(canvasV.width/2, canvasV.height/2, 35, 0, Math.PI*2, true);
     contextV.closePath();
     contextV.fill();
 }
@@ -35,15 +35,15 @@ function renderCanvasV () {
 	bxV = (canvasV.width/2) - coorPosV.x;
 	byV = (canvasV.height/2) - coorPosV.y;
 	ddV = Math.sqrt(Math.pow(bxV, 2) + Math.pow(byV, 2));
-	if (ddV > 100) {
-	    bbxV = (canvasV.width/2) - (bxV*100/ddV);
-	    bbyV = (canvasV.height/2) - (byV*100/ddV);
+	if (ddV > 70) {
+	    bbxV = (canvasV.width/2) - (bxV*70/ddV);
+	    bbyV = (canvasV.height/2) - (byV*70/ddV);
 	} else {
 	    bbxV = coorPosV.x;
 	    bbyV = coorPosV.y;
 	}
 	contextV.beginPath();
-	contextV.arc(bbxV, bbyV, 45, 0, Math.PI*2, true);
+	contextV.arc(bbxV, bbyV, 35, 0, Math.PI*2, true);
 	contextV.closePath();
 	contextV.fill();
 	
